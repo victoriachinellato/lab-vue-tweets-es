@@ -153,6 +153,7 @@ Una vez creados los componentes, la estructura de los elementos que su `App.vue`
 ### Iteración 3 | Establecer el estado cuando el componente se monta
 
 Nuestra aplicación `App.vue` debería tirar de `countries` en el método vue data, manteniendo los datos procedentes del archivo `src/assets/countries.json`.
+Mirar el metodo `watch()` para el cambio de ruta.
 
 ----
 
