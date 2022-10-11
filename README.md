@@ -112,7 +112,7 @@ En las siguientes iteraciones, tendrá que refactorizar el componente `Tweet`. S
 
     <div class="body">
       <div class="top">
-        <User :userData="user" />
+        <User :name="user.name" :handle="user.handle" />
         <Timestamp :time="timestamp" />
       </div>
 
@@ -196,14 +196,14 @@ Importe el componente `User` a `Tweet.js`. Después de importarlo, renderiza el 
 
     <div class="body">
       <div class="top">
-        <User :userData="user" />
+        <User :name="user.name" :handle="user.handle" />
 
 <!-- ... -->
 ```
 
 **Accede a los Props**
 
-Pasamos el objeto con la información del usuario a través de la prop `userData`. Accedemos y mostramos el *nombre* del usuario y el *handle de* twitter.
+Pasamos el objeto con la información del usuario a través de la prop `name` y `handle`. Accedemos y mostramos el *nombre* del usuario y el *handle de* twitter.
 
 ### Iteración 6 | Componente Timestamp
 
@@ -228,7 +228,7 @@ Importe el componente `Timestamp` a `Tweet.js`. Después de importarlo, renderiz
 
     <div class="body">
       <div class="top">
-        <User :userData="user" />
+        <User :name="user.name" :handle="user.handle" />
         <Timestamp :time="timestamp" />
 
 <!-- ... -->
@@ -261,7 +261,7 @@ Una vez hecho esto, importa el componente `Message` y renderízalo en el `Tweet.
 
     <div class="body">
       <div class="top">
-        <User :userData="user" />
+        <User :name="user.name" :handle="user.handle" />
         <Timestamp :time="timestamp" />
       </div>
 
@@ -301,7 +301,7 @@ Una vez hecho esto, importa el componente `Actions` y renderízalo en el `Tweet.
 
     <div class="body">
       <div class="top">
-        <User :userData="user" />
+        <User :name="user.name" :handle="user.handle" />
         <Timestamp :time="timestamp" />
       </div>
 
