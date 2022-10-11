@@ -20,7 +20,7 @@ Clonaremos una parte de la interfaz de usuario de una popular aplicación, Twitt
 
   ```bash
   $ cd lab-vue-tweets-es
-  $ yarn install
+  $ yarn
   $ yarn dev
   ```
 
@@ -40,7 +40,15 @@ Clonaremos una parte de la interfaz de usuario de una popular aplicación, Twitt
 
 1. Utilizaremos [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery\&p=1) para los iconos de nuestra aplicación. Añade la siguiente hoja de estilos en el `head` de la página `index.html`:
 
-   
+ ```html
+     <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+ ```
+ 
 
 ## Instrucciones
 
