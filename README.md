@@ -129,15 +129,13 @@ En las siguientes iteraciones, tendrá que refactorizar el componente `Tweet`. S
   </div>
 </template>
 
-<script>
-export default {
-  name: Tweet,
-  props: {
+<script setup>
+import {defineProps} from 'vue';
+  const props = defineProps({
     user: Object,
     timestamp: String,
     message: String
-  }
-}
+  })
 </script>
 ```
 
