@@ -10,7 +10,7 @@ const tweets = [
     {
         user: {
             name: "Thoughts of Dog®",
-            image: "https://placedog.net/400/400",
+            image: "https://placedog.net/100/100",
             handle: "dog_feelings",
         },
         timestamp: "1h ago",
@@ -19,7 +19,7 @@ const tweets = [
     {
         user: {
             name: "Thoughts of Dog®",
-            image: "https://placedog.net/400/400",
+            image: "https://placedog.net/100/100",
             handle: "dog_feelings",
         },
         timestamp: "2h ago",
@@ -28,7 +28,7 @@ const tweets = [
     {
         user: {
             name: "Thoughts of Dog®",
-            image: "https://placedog.net/400/400",
+            image: "https://placedog.net/100/100",
             handle: "dog_feelings",
         },
         timestamp: "3h ago",
