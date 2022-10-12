@@ -1,25 +1,27 @@
 ![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
 
-# LAB | Vue.js WikiCountries
+# LAB | Tweets de Vue.js
 
 ## Introducción
 
-Después de pasar demasiado tiempo en GitHub, has encontrado un [conjunto de datos JSON de países](https://ih-countries-api.herokuapp.com/countries) y has decidido utilizarlo para crear tu Wikipedia de países.
+Pasar datos a través de *props* es un concepto importante de Vue.js que se entiende mejor con la práctica. Utilizaremos este ejercicio para ayudarte a consolidar tu comprensión de los props.
+
+Clonaremos una parte de la interfaz de usuario de una popular aplicación, Twitter. Empecemos.
 
 <p align="center">
-  <img src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/labs/lab-wiki-countries-1.gif" alt="Example - Finished LAB"/>
+  <img src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-frontend-vue/lab-vue-tweets-4.png" width="500"/>
 </p>
 
 ## Configuración
 
 - Haz un fork de este repo
 - Clona este repositorio
-- Abre el LAB y empieza:
+- Abre el LAB y comienza:
 
   ```bash
-  $ cd lab-vue-wiki-countries-es
-  $ yarn
-  $ yarn start
+  $ cd lab-vue-tweets-es
+  $ yarn install
+  $ yarn dev
   ```
 
 ## La presentación
@@ -36,147 +38,296 @@ Después de pasar demasiado tiempo en GitHub, has encontrado un [conjunto de dat
 
 ## Cómo empezar
 
-Limpia el componente `App.vue` para que tenga la siguiente estructura dentro de las etiquetas de la plantilla
+1. Utilizaremos [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery\&p=1) para los iconos de nuestra aplicación. Añade la siguiente hoja de estilos en el `head` de la página `index.html`:
+
+   
+
+## Instrucciones
+
+### Iteración 1 | Contenido inicial
+
+Para que puedas centrarte en Vue.js sin tener que preocuparte por el estilismo, te proporcionamos los estilos CSS. Todo el CSS está incluido en el código inicial en el archivo `src/App.vue` dentro de la etiqueta`<style>`
+
+También te hemos proporcionado el contenido inicial del `App.vue` y hemos incluido la estructura HTML para el componente `Tweet.vue`. Antes de empezar a trabajar tómate un momento para revisar estos dos archivos.
+
+Una vez que ejecutes inicialmente la aplicación deberías ver lo siguiente:
+
+![Tweet component after the initial setup](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-frontend-vue/lab-vue-tweets-1.png)
+
+El componente`Tweet` está en este momento renderizando contenido estático. Cambiaremos esto en la próxima iteración. Actualizaremos el componente `Tweet` para que muestre el contenido procedente de los `props`.
+
+### Iteración 2 | Pasar el Tweet como Prop
+
+En `App.vue`, tenemos un array llamado `tweetsArray` que contiene objetos que representan tweets. Utilizaremos el componente `Tweet` para mostrar estos objetos de *tweets*. En el `Tweet` mostraremos el `nombre` del usuario, la `imagen` del usuario, el `nombre` del usuario, `la fecha` del tweet y el `mensaje`.
+
+**Pasar el tweet como prop**
+
+Pasa el primer objeto de datos de los `tweets` como prop al componente `Tweet`:
 
 ```vue
-<!-- src/App.js -->
+<!-- src/App.vue -->
+<!-- ... -->
+
+<Tweet tweet="tweets" />
+```
+
+**Mostrar el contenido del tweet en el componente `Tweet`**
+
+Actualiza el componente `Tweet` para mostrar los valores procedentes de la prop del `tweet`. Recuerda que el valor que pasamos es un objeto/
+
+**Resultado esperado**
+
+Una vez hecho esto, su componente `Tweet` debería mostrar el siguiente contenido:
+
+![Tweet component after passing the "tweets" prop](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-frontend-vue/lab-vue-tweets-2.png)
+
+### Iteración 3 | Crear los componentes
+
+Ahora crearemos nuevos archivos para los componentes que haremos en las siguientes iteraciones. Dentro de la carpeta `src/components/` crea los siguientes archivos nuevos:
+
+- `src/components/ProfileImage.vue`,
+- `src/components/User.vue` ,
+- `src/components/Timestamp.vue` ,
+- `src/components/Message.vue` y
+- `src/components/Actions.vue`.
+
+En las siguientes iteraciones, tendrá que refactorizar el componente `Tweet`. Se le pedirá que extraiga partes de la estructura HTML existente en nuevos componentes:
+
+![Example - Refactoring the "Tweet" component](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-frontend-vue/lab-vue-tweets-3.png)<br/>
+
+**Cuando haya terminado con todas** las iteraciones, la versión final de su componente `Tweet` tendrá este aspecto:
+
+<details>
+<summary>Haga clic para ver el código</summary>
+
+```vue
+<!-- FINAL VERSION -->
+
 <template>
-  <div class="app">
+  <div class="tweet">
+    <ProfileImage image="user.image" />
+
+    <div class="body">
+      <div class="top">
+        <User userData="user" />
+        <Timestamp time="timestamp" />
+      </div>
+
+      <Message message="message" />
+      <Actions />
+    </div>
+
+    <i class="fas fa-ellipsis-h"></i>
   </div>
 </template>
+
+<script>
+export default {
+  name: Tweet,
+  props: {
+    user: Object,
+    timestamp: String,
+    message: String
+  }
+}
+</script>
 ```
 
+:heavy_exclamation_mark: No copie y pegue el código anterior directamente en el componente `Tweet`.
+
+Lo harás en las siguientes iteraciones, paso a paso. Usted reemplazará las partes de HTML a medida que crea cada nuevo componente.
+
+<hr/>
 <br/>
 
-## Instrucciones
+</details>
 
-### Iteración 0 | Instalación del vue Router
 
-Recuerda instalar el vue Router:
+### Iteración 4 | Componente ProfileImage
 
-```shell
-$ yarn add vue-router
+**Extraer el HTML**
+
+Extraiga la etiqueta `img` existente y renderícela a través del componente `ProfileImage`:
+
+```jsx
+<img src="IMAGE_URL" class="profile" alt="profile"/>
 ```
 
-Y configurar el router en su archivo `src/router/index.js`:
+**Renderizar el componente**
 
-```js
-// src/router.js
-import { createRouter, createWebHistory } from 'vue-router';
-
-const routes = [
-  {
-    path: '/',
-    name: 'countries',
-    component: () => import(/* webpackChunkName: 'list' */ './views/CountriesList.vue')
-    children: [
-      {
-        path: ':code',
-        name: 'details',
-        component: () => import(/* webpackChunkName: 'details' */ './views/CountriesDetails.vue')
-      },
-    ]
-  }
-];
-
-const router = createRouter({
-  history: createWebHistory('/'),
-  routes,
-  scrollBehavior() {
-    document.getElementById('app').scrollIntoView();
-  }
-});
-```
-## Instrucciones
-
-### Iteración 1.1 | Crear componentes
-
-En esta iteración, nos centraremos en el diseño general. Antes de empezar, dentro de la carpeta `src`, crea la carpeta `components`. Allí crearás al menos 3 componentes:
-
-- `Navbar`: Muestra la barra de navegación básica con el nombre LAB
-
-- `CountriesList`: Muestra la lista de enlaces con los nombres de los países. Cada enlace debe ser un `router-link` que utilizaremos para *enviar* el código del país`(alpha3Code`) a través de la URL.
-
-- `CountryDetails`: Es el componente que renderizaremos a través de la `router` de `vue-router` y que *recibirá* el código del país (`alpha3Code`) a través de la URL.
-
-  En realidad es el id del país (ejemplo: `/ESP` para España, `/FRA` para Francia).
-
-Para ayudarte con la estructura de los componentes, te hemos dado un ejemplo de página dentro de `example.html`.
-
-Si quieres darle estilo puedes cómo abordamos el estilo con [Bulma](https://bulma.io/) en el `example.html`.
-
-### Iteración 1.2 | Componente Navbar
-
-La forma más sencilla de definir un componente en vue es escribir una función JavaScript, también conocida como componente de función. La barra de navegación debería mostrar el título *LAB - WikiCountries*.
-
-### Iteración 1.3 | Componente CountriesList
-
-Este componente debe mostrar una lista de `router-link` que se utilizan para activar el cambio de URL del navegador. Al hacer clic en un componente `router-link` se activará la `router` correspondiente mostrando el componente de detalles del país.
-
-### Iteración 1.4 | Componente CountryDetails y configuración `del router-view`
-
-Ahora que nuestra lista de países está lista, debemos crear la página `CountryDetails`. `CountryDetails` muestra los detalles del país según el enlace que hemos pulsado. Este componente debe ser mostrado/renderizado dinámicamente con el `<router-vue />`.
+Una vez hecho esto, importe el componente `ProfileImage` a `Tweet.js`. Después de importarlo, renderiza el componente dentro de `Tweet` de la siguiente manera:
 
 ```vue
-<!-- Example -->
-
-<router-view>
+<!-- ... -->
+<template>
+  <div class="tweet">
+    <ProfileImage image="user.image" />
+<!-- ... -->
 ```
 
-Los componentes renderizados con Vue.js pueden leer la consulta con `useRoute()`. Podemos utilizarlo para obtener la información procedente de la barra URL del navegador, por ejemplo, el código `alpha3Code` del país.
+**Accede a los Props**
 
-**NOTA:** Para la imagen pequeña de la bandera, se puede utilizar el `alpha2Code` en minúsculas e incrustarlo en la URL como se muestra a continuación:
+`ProfileImage` recibe una `imagen` prop. Establece este valor como el `src` de la etiqueta `<img />`.
 
-- Francia: <https://flagpedia.net/data/flags/icon/72x54/fr.png>
-- Alemania: https: [//flagpedia.net/data/flags/icon/72x54/de.png](https://flagpedia.net/data/flags/icon/72x54/de.png)
-- Brasil: https: [//flagpedia.net/data/flags/icon/72x54/br.png](https://flagpedia.net/data/flags/icon/72x54/br.png)
-- etc.
+### Iteración 5 | Componente de usuario
 
-----
+**Extraer el HTML**
 
-### Iteración 2 | Enlazarlo todo
+Extraiga las etiquetas `span` existentes que muestran la información del usuario y renderícelas a través del componente `User`:
 
-Una vez creados los componentes, la estructura de los elementos que su `App.vue` va a renderizar debería ser algo parecido a esto:
-
-```html
-<div class="app">
-  <Navbar />
-  <div>
-    <CountriesList :countries="countries" />
-    <router-view>
-  </div>
-</div>
+```vue
+<span class="user">
+  <span class="name"> USER_NAME </span>
+  <span class="handle">@ USER_HANDLE</span>
+</span>
 ```
 
-----
+**Renderizar el componente**
 
-### Iteración 3 | Establecer el estado cuando el componente se monta
+Importe el componente `User` a `Tweet.js`. Después de importarlo, renderiza el componente dentro de `Tweet` de la siguiente manera:
 
-Nuestra aplicación `App.vue` debería tirar de `countries` en el método vue data, manteniendo los datos procedentes del archivo `src/assets/countries.json`.
-Mirar el metodo `watch()` para el cambio de ruta.
+```vue
+<!-- ... -->
 
-----
+<template>
+  <div class="tweet">
+    <ProfileImage image="user.image" />
 
-### Iteración 4 | Bono | Obtener los datos de los países desde una API
+    <div class="body">
+      <div class="top">
+        <User userData="user" />
 
-En lugar de confiar en los datos estáticos procedentes de un archivo `json`, vamos a hacer algo más interesante y obtener los datos de una API real.
+<!-- ... -->
+```
 
-Hagamos una petición `GET` a la URL <https://ih-countries-api.herokuapp.com/countries> y utilicemos los datos devueltos en la respuesta como lista de países. Puedes usar `fetch` o `axios` para hacer la petición.
+**Accede a los Props**
 
-Deberías usar el hook `onMounted()` para establecer el hook lifcycle que se ejecuta sólo una vez y hace una petición a la API. La petición debe ocurrir a primera hora cuando se cargue la aplicación, por lo tanto piensa cuándo y desde dónde debemos hacer la petición a la API.
+Pasamos el objeto con la información del usuario a través de la prop `userData`. Accedemos y mostramos el *nombre* del usuario y el *handle de* twitter.
 
-----
+### Iteración 6 | Componente Timestamp
 
-### Iteración 5 | Bono | Obtener los datos de un país desde una API
+**Extraer el HTML**
 
-Usando el hook `onMounted()`  configure el componente `CountriesDetails`. Debería hacer una petición a la API RestCountries y obtener los datos del país en cuestión. Puede construir el endpoint de la petición utilizando el `alpha3Code` del país. Ejemplo:
+Extrae la etiqueta `span` existente que muestra la información de la *marca* de tiempo y la renderiza a través del componente `Timestamp`:
 
-- Estados Unidos: <https://ih-countries-api.herokuapp.com/countries/USA>
-- Japón: https: [//ih-countries-api.herokuapp.com/countries/JPN](https://ih-countries-api.herokuapp.com/countries/JPN)
-- India: https: [//ih-countries-api.herokuapp.com/countries/IND](https://ih-countries-api.herokuapp.com/countries/IND)
+```jsx
+<span class="timestamp"> TWEET_TIMESTAMP </span>
+```
 
-El efecto debe ejecutarse después del renderizado inicial y cada vez que el parámetro de la URL con el `alpha3Code` cambie.
+**Renderizar el componente**
 
-<br/>
+Importe el componente `Timestamp` a `Tweet.js`. Después de importarlo, renderiza el componente dentro de `Tweet` de la siguiente manera:
 
-¡Feliz codificación! :heart:
+```vue
+<!-- ... -->
+
+<template>
+  <div class="tweet">
+    <ProfileImage image="user.image" />
+
+    <div class="body">
+      <div class="top">
+        <User userData="user" />
+        <Timestamp time="timestamp" />
+
+<!-- ... -->
+```
+
+**Accede a los Props**
+
+`Timestamp` recibe un `time` prop. Muestra este valor cowmo el contenido de la etiqueta `span`.
+
+### Iteración 7 | Componente de mensajes
+
+**Extraer el HTML**
+
+Extrae la etiqueta `p` existente y la renderiza a través del componente `Message`:
+
+```jsx
+<p class="message"> TWEET_MESSAGE </p>
+```
+
+**Renderizar el componente**
+
+Una vez hecho esto, importa el componente `Message` y renderízalo en el `Tweet.js` de la siguiente manera:
+
+```vue
+<!-- ... -->
+
+<template>
+  <div class="tweet">
+    <ProfileImage image="user.image" />
+
+    <div class="body">
+      <div class="top">
+        <User userData="user" />
+        <Timestamp time="timestamp" />
+      </div>
+
+      <Message message="message" />
+<!-- ... -->
+```
+
+**Acceder a los Props**
+
+`Message` recibe un `message` prop. Muestra este valor en la etiqueta `p`.
+
+### Iteración 8 | Componente de acciones
+
+**Extraer el HTML**
+
+Extrae la etiqueta `div.actions` del mensaje existente y la renderiza a través del componente `Actions`:
+
+```jsx
+    <div class="actions">
+      <i class="far fa-comment"></i>
+      <i class="fas fa-retweet"></i>
+      <i class="far fa-heart"></i>
+      <i class="fas fa-share"></i>
+    </div>
+```
+
+**Renderizar el componente**
+
+Una vez hecho esto, importa el componente `Actions` y renderízalo en el `Tweet.js` de esta manera:
+
+```vue
+<!-- ... -->
+
+<template>
+  <div class="tweet">
+    <ProfileImage image="user.image" />
+
+    <div class="body">
+      <div class="top">
+        <User userData="user" />
+        <Timestamp time="timestamp" />
+      </div>
+
+      <Message message="message" />
+      <Actions />
+
+<!-- ... -->
+```
+
+El componente `Actions` no toma ningún props.
+
+### Iteración 9 | Renderizar múltiples `Tweets`
+
+Una vez que hayas terminado de refactorizar el componente `Tweet`, actualiza `App.vue` para mostrar tres componentes `<Tweet />`. Cada `<Tweet />` debe recibir un objeto tweet separado del `tweetsArray`.
+
+Una vez terminado, tu aplicación debería mostrar el siguiente contenido:
+
+<details>
+
+<summary> Click para ver la imagen </summary>
+
+![Example - Final Result](https://education-team-2020.s3.eu-west-1.amazonaws.com/web-frontend-vue/lab-vue-tweets-4.png)
+
+
+</details>
+
+<hr>
+
+
+Feliz codificación! :blue_heart:
