@@ -107,15 +107,15 @@ En las siguientes iteraciones, tendrá que refactorizar el componente `Tweet`. S
 
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 
     <div class="body">
       <div class="top">
-        <User userData="user" />
-        <Timestamp time="timestamp" />
+        <User :userData="user" />
+        <Timestamp :time="timestamp" />
       </div>
 
-      <Message message="message" />
+      <Message :message="message" />
       <Actions />
     </div>
 
@@ -163,7 +163,7 @@ Una vez hecho esto, importe el componente `ProfileImage` a `Tweet.js`. Después 
 <!-- ... -->
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 <!-- ... -->
 ```
 
@@ -193,11 +193,11 @@ Importe el componente `User` a `Tweet.js`. Después de importarlo, renderiza el 
 
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 
     <div class="body">
       <div class="top">
-        <User userData="user" />
+        <User :userData="user" />
 
 <!-- ... -->
 ```
@@ -225,12 +225,12 @@ Importe el componente `Timestamp` a `Tweet.js`. Después de importarlo, renderiz
 
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 
     <div class="body">
       <div class="top">
-        <User userData="user" />
-        <Timestamp time="timestamp" />
+        <User :userData="user" />
+        <Timestamp :time="timestamp" />
 
 <!-- ... -->
 ```
@@ -258,15 +258,15 @@ Una vez hecho esto, importa el componente `Message` y renderízalo en el `Tweet.
 
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 
     <div class="body">
       <div class="top">
-        <User userData="user" />
-        <Timestamp time="timestamp" />
+        <User :userData="user" />
+        <Timestamp :time="timestamp" />
       </div>
 
-      <Message message="message" />
+      <Message :message="message" />
 <!-- ... -->
 ```
 
@@ -298,12 +298,12 @@ Una vez hecho esto, importa el componente `Actions` y renderízalo en el `Tweet.
 
 <template>
   <div class="tweet">
-    <ProfileImage image="user.image" />
+    <ProfileImage :image="user.image" />
 
     <div class="body">
       <div class="top">
-        <User userData="user" />
-        <Timestamp time="timestamp" />
+        <User :userData="user" />
+        <Timestamp :time="timestamp" />
       </div>
 
       <Message message="message" />
