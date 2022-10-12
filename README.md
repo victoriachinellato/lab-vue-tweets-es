@@ -38,9 +38,11 @@ Clonaremos una parte de la interfaz de usuario de una popular aplicación, Twitt
 
 ## Cómo empezar
 
-1. Utilizaremos [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery\&p=1) para los iconos de nuestra aplicación. Añade la siguiente hoja de estilos en el `head` de la página `index.html`:
+1. Utilizaremos [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery\&p=1) para los iconos de nuestra aplicación. Añade la siguiente hoja de estilos en la página `styles.html`:
 
-   
+  ```css
+@import 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css'
+  ``` 
 
 ## Instrucciones
 
