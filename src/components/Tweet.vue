@@ -1,23 +1,23 @@
 <template>
     <div class="tweet">
         <!-- <img :src="props.image" class="profile" alt="profile" /> -->
-        <ProfileImage :image="props.image" />
+        <ProfileImage :image="props.tweet.user.image" />
 
         <div class="body">
             <div class="top">
                 <!-- PREGUNTAR QUE ONDA USER DATA -->
-                <User :name="props.name" :handle="props.handle"/>
+                <User :name="props.tweet.user.name" :handle="props.handle"/>
                 <!-- <span class="user">
                     <span class="name">{{props.name}}</span>
                     <span class="handle">{{props.handle}}</span>
                 </span> -->
                
-                <Timestamp :timestampPrueba="props.timestamp" />
+                <Timestamp :timestampPrueba="props.tweet.timestamp" />
                 <!-- <span class="timestamp">{{props.timestamp}}</span> -->
             </div>
 
 
-            <Message :message="props.message" />
+            <Message :message="props.tweet.message" />
             <!-- <p class="message">
                 {{props.message}}
             </p> -->
@@ -50,6 +50,13 @@ import User from './User.vue';
 import Timestamp from './Timestamp.vue'; 
 import Message from './Message.vue';
 import Actions from './Actions.vue';
+import { objectToString } from '@vue/shared';
 
-const props = defineProps (['name','image', 'handle', 'timestamp', 'message'])
+
+
+
+const props = defineProps({
+    tweet: Object
+})
+// const props = defineProps (['name','image', 'handle', 'timestamp', 'message'])
 </script>

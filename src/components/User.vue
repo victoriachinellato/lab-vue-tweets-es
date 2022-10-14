@@ -1,7 +1,7 @@
 <template>
     <span class="user">
         <span class="name">{{props.name}}</span>
-        <span class="handle">{{props.handle}}</span>
+        <span class="handle">@{{props.handle}}</span>
     </span>
 
 </template>

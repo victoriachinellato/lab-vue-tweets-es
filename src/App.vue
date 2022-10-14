@@ -3,7 +3,8 @@
         <Tweet  />
     </div> -->
 
-    <Tweet v-for="tweet in tweets" :name="tweet.user.name" :image="tweet.user.image" :handle="tweet.user.handle" :timestamp="tweet.timestamp" :message="tweet.message"/>
+    <Tweet v-for="tweet in tweets" :tweet = "tweet"/>
+    <!-- <Tweet v-for="tweet in tweets" :name="tweet.user.name" :image="tweet.user.image" :handle="tweet.user.handle" :timestamp="tweet.timestamp" :message="tweet.message"/> -->
 </template>
   
 <script setup>
